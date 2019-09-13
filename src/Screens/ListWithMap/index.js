@@ -7,6 +7,7 @@ import {getPlaces, changeTheScreen} from '../../Store/Actions/shopActions';
 import { connect } from 'react-redux'
 import shopReducer from '../../Store/Reducers/shopReducer';
 import ChangeTheMode from "../../Components/ChangeTheMode";
+import Map from "../../Components/Map"
  class ListWithMap extends Component {
     static propTypes = {
         prop: PropTypes
@@ -19,12 +20,22 @@ import ChangeTheMode from "../../Components/ChangeTheMode";
 
     render() {
         return (
+
+            
             <View style={styles.container}>
+            {this.props.isListMode ? (
                 <Shop
             places={this.props.places}
            // isLoading={this.props.isLoading}
            // navigation={this.props.navigation}
           />
+          ) : (
+            <Map
+            style={styles.map}
+            places={this.props.places}
+            navigation={this.props.navigation}
+          />
+          )}
           <ChangeTheMode
           //action
           screenChanged={this.props.onChangeScreenMode}
