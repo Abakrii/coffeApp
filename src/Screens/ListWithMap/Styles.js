@@ -1,14 +1,30 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+const screenWidth = Math.round(Dimensions.get('window').width);
+const screenHeight = Math.round(Dimensions.get('window').height);
 
 const styles = StyleSheet.create({
+
   container: {
-  //  flex: 1,
+   // flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "stretch"
+   // alignItems: "stretch",
+    
+    
+   
+  },
+  containerTwo:{
+    ...StyleSheet.absoluteFillObject,
+    height: screenHeight,
+    width: screenWidth,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    flexDirection: "column",
   },
   map: {
-    flex: 1
+   // flex: 1,
+    ...StyleSheet.absoluteFillObject,
+ 
   },
   button: {
     position: "absolute",

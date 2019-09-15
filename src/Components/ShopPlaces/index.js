@@ -3,10 +3,15 @@ import { Text, Image, View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import styles from "./Styles";
 
-const ShopPlaces = ({ place, navigation }) => (
-  <TouchableOpacity
+const ShopPlaces = ({ place, navigation , reviews }) => {
+ // console.log('shopPlace review' , reviews)
+  return(
+  
+<TouchableOpacity
     style={styles.container}
-    onPress={() => navigation.navigate("PlaceDetail", place) , console.log('this props', place)}
+    onPress={() =>
+      navigation.navigate("PlaceContent", {place ,reviews},{ title: "Hello" })
+    }
   >
     <Image
       style={styles.image}
@@ -31,6 +36,9 @@ const ShopPlaces = ({ place, navigation }) => (
       )}
     </View>
   </TouchableOpacity>
-);
+  )
+}
+  
+
 
 export default ShopPlaces;

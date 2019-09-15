@@ -5,7 +5,7 @@ import { Image } from "react-native";
 const PlacesMarker = ({ place, navigation }) => (
   <Marker
     onPress={() =>
-      navigation.navigate("OutletDetail", place, { title: "Hello" })
+      navigation.navigate("PlaceContent", place, { title: "Hello" })
     }
     coordinate={place.coordinates}
     title={place.name}
