@@ -1,5 +1,5 @@
 import React from 'react';
-import {View } from 'react-native';
+import {View,Text } from 'react-native';
 import {createAppContainer } from 'react-navigation';
 import ListWithMap from './Screens/ListWithMap';
 import PlaceContent from './Screens/PlaceContent';
@@ -11,32 +11,33 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 
 
-
 const AppNavigator = createStackNavigator(
   {
-ListWithMap: {screen: ListWithMap},
-    PlaceContent: {screen: PlaceContent},
+ListWithMap: {screen: ListWithMap ,  navigationOptions: () => ({
+  title: `Choose Your Coffe Shop `,
+
+}),},
+    PlaceContent: {screen: PlaceContent,
+      navigationOptions: () => ({
+        title: `Coffee Shop Detailes `,
+        
+      })
+    },
   },
   {
     initialRouteName: 'ListWithMap',
-    defaultNavigationOptions: {
-        header: null,
-        headerStyle: {
-          backgroundColor: "#f4511e"
-        },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          fontWeight: "bold"
-        }
-    }
+    
+   
   },
 );
 
 
  const AppContainer = createAppContainer(AppNavigator);
- export default () => (
-    <View style={{ flex: 1 }}>
-      <AppContainer />
-    </View>
-  );
+
+ export default AppContainer;
+//  export default () => (
+//     <View style={{ flex: 1 }}>
+//       <AppContainer />
+//     </View>
+//   );
  

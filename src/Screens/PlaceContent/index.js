@@ -5,7 +5,7 @@ import {
   Image,
   TouchableOpacity,
   Animated,
-  ScrollView
+  ScrollView,Linking, Button, 
 } from "react-native";
 import styles from "./Styles";
 import MapView from "react-native-maps";
@@ -16,10 +16,36 @@ import Icon from "react-native-vector-icons/FontAwesome";
 const PlaceContent = ({ navigation   }) => {
   const place = navigation.state.params.place;
   const reviews = navigation.state.params.reviews;
-  console.log('review in place content' , reviews)
+ // console.log('review in place content' , reviews)
+  console.log('Place Content Props' , place);
 
 
 
+  viewMore = () => {
+    Linking.canOpenURL(place.url).then(supported => {
+      if (supported) {
+        Linking.openURL(place.url);
+      } else {
+        console.log("Don't know how to open URI: " + place.url);
+      }
+    });
+  };
+
+  // inCall = ( ) =>{
+  //   const url = place.display_phone
+  //  this.link(url)
+ 
+  // };
+
+
+
+  inCall = () => {
+    let phoneNumber = '';
+    if (Platform.OS === 'android') { phoneNumber = `tel:${place.display_phone}`; }
+    else {phoneNumber = `telprompt:${place.display_phone}`; }
+    Linking.openURL(phoneNumber);
+ };
+  
   return (
     <ScrollView style={styles.container}>
       <Image
@@ -52,10 +78,20 @@ const PlaceContent = ({ navigation   }) => {
         )}
         <Text style={styles.price}>{String(place.price)}</Text>
       </View>
-      <TouchableOpacity style={styles.callView}>
+      <TouchableOpacity onPress={this.inCall} style={styles.callView} >
         <Icon name="phone" size={30} color="#896038" />
-        <Text style={styles.phoneNumber}> {place.display_phone}</Text>
+        <Text  style={styles.phoneNumber}> {place.display_phone} </Text>
       </TouchableOpacity>
+      
+
+
+      <TouchableOpacity style={styles.callView} onPress={this.viewMore}>
+  
+        <Text  style={styles.phoneNumber}> Click Here To Open Website URL </Text>
+      </TouchableOpacity>
+
+
+
       <View pointerEvents="none">
         <MapView
           style={styles.mapView}
